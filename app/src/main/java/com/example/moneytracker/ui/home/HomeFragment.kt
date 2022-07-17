@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.fbExpense.setOnClickListener {
-            Toast.makeText(activity,"Add Expense",Toast.LENGTH_LONG).show()
+
         }
 
         binding.fbAdd.setOnClickListener {

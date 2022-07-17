@@ -7,5 +7,16 @@
     <string name="add_expense">Add Expense</string>
     <string name="add_income">Add Income</string>
     <string name="icon_for_expense">icon for expense</string>
+    <string name="amount">Amount</string>
+    <string name="category">Category</string>
+
+    <array name="listOfCategories">
+        <item>Food</item>
+        <item>Health</item>
+        <item>Education</item>
+        <item>Loan</item>
+        <item>Shopping</item>
+        <item>Other</item>
+    </array>
 
 </resources>
