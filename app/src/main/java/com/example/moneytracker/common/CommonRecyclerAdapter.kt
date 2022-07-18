@@ -42,6 +42,3 @@ class CommonRecyclerAdapter( private val data: MutableList<BaseUiModel>,
         }
 
     }
-
-
-}

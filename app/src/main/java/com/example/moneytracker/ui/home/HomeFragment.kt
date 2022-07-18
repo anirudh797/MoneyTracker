@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.moneytracker.R
+import com.example.moneytracker.common.CustomDialog
 import com.example.moneytracker.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -27,6 +28,12 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     var fbClicked = false
+    lateinit var customDialog: CustomDialog
+
+    companion object{
+        const val ADD_EXPENSE = "Add expense"
+        const val ADD_INCOME = "Add Income"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,29 +44,32 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
+        setupListeners()
+    }
+
+    private fun setupView() {
+        customDialog = CustomDialog()
+    }
+
+    private fun setupListeners() {
         binding.fb.setOnClickListener {
             onFbClicked()
         }
 
         binding.fbExpense.setOnClickListener {
-
+        customDialog.show(parentFragmentManager,ADD_EXPENSE)
         }
 
         binding.fbAdd.setOnClickListener {
-            Toast.makeText(activity,"Add Income",Toast.LENGTH_SHORT).show()
-
+            customDialog.show(parentFragmentManager, ADD_INCOME)
         }
-
-        //added this piece of code//
-
     }
 
     private fun onFbClicked() {
