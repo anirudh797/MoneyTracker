@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    >
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:background="@drawable/ic_endless_constellation"
+        android:layout_width="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -16,15 +16,17 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/dp20"
+            android:background="@color/dark_grey"
             >
 
 
             <ImageView
                 android:id="@+id/iv_pick_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:clickable="true"
@@ -35,14 +37,17 @@
 
             <TextView
                 android:id="@+id/tv_date"
+                android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/iv_pick_date"
                 android:layout_alignStart="@id/et_amount"
+                android:layout_alignTop="@id/iv_pick_date"
+                android:layout_alignBottom="@id/iv_pick_date"
+                android:layout_marginStart="@dimen/dp30"
+                android:layout_toEndOf="@id/iv_pick_date"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="setDate"
-                />
+                android:onClick="setDate" />
 
 
             <TextView
@@ -50,23 +55,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/iv_pick_date"
-                android:layout_margin="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp20"
                 android:fontFamily="sans-serif-black"
                 android:text="@string/amount"
                 android:textSize="@dimen/sp20" />
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/et_amount"
+                style="@style/textView_large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/tv_amount"
-                android:layout_marginHorizontal="@dimen/dp10"
-                android:inputType="number"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif-black"
                 android:layout_alignBaseline="@id/tv_amount"
-                tools:text="5000"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/dp30"
+                android:layout_toEndOf="@id/tv_amount"
+                android:fontFamily="sans-serif-black"
+                android:inputType="number"
+                android:gravity="center"
+                android:textStyle="bold"
+                tools:text="5000" />
 
             <TextView
                 android:id="@+id/tv_category"
@@ -74,19 +81,57 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_amount"
                 android:layout_alignStart="@id/tv_amount"
-                android:text="@string/category"
-                android:textSize="@dimen/sp20"
+                android:layout_marginTop="@dimen/dp20"
                 android:fontFamily="sans-serif-black"
-                />
+                android:text="@string/category"
+                android:textSize="@dimen/sp20" />
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/tv_category"
-                android:layout_below="@id/tv_amount"
+                android:layout_above="@id/et_desc"
                 android:layout_alignStart="@id/et_amount"
-                />
+                android:layout_below="@id/tv_amount"
+                android:layout_alignTop="@id/tv_category"
+                android:layout_alignBottom="@id/tv_category"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/tv_category" />
+
+
+            <android.widget.TextView
+                android:id="@+id/tv_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_category"
+                android:layout_marginTop="@dimen/dp20"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/description"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp20" />
+
+            <EditText
+                android:id="@+id/et_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/tv_desc"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_toEndOf="@id/tv_desc"
+                android:layout_alignStart="@id/et_amount"
+                android:gravity="center"
+                android:hint="@string/description_for_income_expense"
+                tools:text="Add a Description for your expense/income" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:layout_marginTop="@dimen/dp20"
+                android:textSize="@dimen/sp20"
+                android:layout_below="@id/et_desc"
+                 />
 
         </RelativeLayout>
 

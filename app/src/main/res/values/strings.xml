@@ -9,6 +9,8 @@
     <string name="icon_for_expense">icon for expense</string>
     <string name="amount">Amount</string>
     <string name="category">Category</string>
+    <string name="description">Description</string>
+    <string name="description_for_income_expense">Description for your Income/Expense</string>
 
     <array name="listOfCategories">
         <item>Food</item>
