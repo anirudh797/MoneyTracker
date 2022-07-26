@@ -13,6 +13,7 @@
     <string name="description_for_income_expense">Description for your Income/Expense</string>
 
     <array name="listOfCategories">
+        <item>Choose any category</item>
         <item>Food</item>
         <item>Health</item>
         <item>Education</item>

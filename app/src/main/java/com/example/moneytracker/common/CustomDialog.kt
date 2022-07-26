@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.moneytracker.R
 import com.example.moneytracker.databinding.AddIncomeExpenseDialogBinding
@@ -35,7 +36,6 @@ class CustomDialog : DialogFragment() {
             spinner.adapter = CustomAdapter(requireContext(),R.layout.spinner_list_item,
                 resources.getStringArray(R.array.listOfCategories).toList())
         }
-        binding.spinner.prompt = "Please select one "
 
         setupListeners()
 
@@ -51,12 +51,15 @@ class CustomDialog : DialogFragment() {
                      position: Int,
                      id: Long
                  ) {
-                     var view = parent?.selectedView
-//                 ((view as ConstraintLayout).getViewById(R.id.tv_category_name) as TextView).setText()
+                     if (parent?.getItemAtPosition(position)?.equals("Choose Category") == true){
+                     }else {
+                         var item = parent?.getItemAtPosition(position).toString();
+                         Toast.makeText(parent?.context, "Selected: $item", Toast.LENGTH_SHORT).show();
+                     }
                  }
 
                  override fun onNothingSelected(parent: AdapterView<*>?) {
-                     binding.spinner.setSelection(0)
+//                     binding.spinner.setSelection(0)
                  }
 
              }
