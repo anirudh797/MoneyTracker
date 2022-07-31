@@ -9,8 +9,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.moneytracker.R
+import com.example.moneytracker.data.model.Transaction
+import com.example.moneytracker.data.model.TransactionType
 import com.example.moneytracker.databinding.AddIncomeExpenseDialogBinding
+import com.example.moneytracker.ui.home.HomeViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,10 +25,28 @@ class CustomDialog : DialogFragment() {
 
     lateinit var myCalendar : Calendar
 
+    lateinit var viewModel: HomeViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
+
+
+    companion object{
+
+        const val Type = "type"
+        fun newInstance(type: TransactionType): CustomDialog? {
+            val dialog = CustomDialog()
+
+            // Supply num input as an argument.
+            val args = Bundle()
+            args.putString("type",type.toString())
+            dialog.arguments = args
+            return dialog
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +55,7 @@ class CustomDialog : DialogFragment() {
     ): View? {
 
         binding = AddIncomeExpenseDialogBinding.inflate(inflater,container,false)
+        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         return binding.root
     }
 
@@ -84,7 +107,25 @@ class CustomDialog : DialogFragment() {
 
              }
          }
+        binding.btnSave.setOnClickListener {
+            viewModel.addTransaction(prepareTransactionData())
+        }
 
+
+    }
+
+    private fun prepareTransactionData(): Any {
+
+        var type = arguments?.getString(Type)
+        val transactionType = if(type?.equals("INCOME") == true) TransactionType.INCOME else
+            TransactionType.EXPENSE
+        val category =  if(type?.equals("INCOME") == true) "income" else
+            "expense"
+        return Transaction(transactionType,
+                            binding.tvDesc.text.toString(),
+                            binding.tvDate.text.toString(),
+                            binding.tvAmount.toString(),
+                            category)
 
     }
 

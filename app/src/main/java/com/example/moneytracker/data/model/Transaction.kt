@@ -1,5 +1,6 @@
 package com.example.moneytracker.data.model
 
+import androidx.versionedparcelable.ParcelField
 import com.google.gson.annotations.SerializedName
 
 const val INCOME = "income"
@@ -15,7 +16,7 @@ data class Transaction(
     @SerializedName("date")
     val date : String,
     @SerializedName("amount")
-    val amount : Int,
+    val amount : String,
     @SerializedName("category")
     val category: String
 )

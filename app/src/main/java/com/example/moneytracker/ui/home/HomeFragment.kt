@@ -13,6 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.moneytracker.R
 import com.example.moneytracker.common.CustomDialog
+import com.example.moneytracker.data.model.EXPENSE
+import com.example.moneytracker.data.model.INCOME
+import com.example.moneytracker.data.model.TransactionType
 import com.example.moneytracker.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -29,10 +32,12 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     var fbClicked = false
     lateinit var customDialog: CustomDialog
+    lateinit var viewModel: HomeViewModel
 
     companion object{
         const val ADD_EXPENSE = "Add expense"
         const val ADD_INCOME = "Add Income"
+        const val TAG ="tag"
     }
 
     override fun onCreateView(
@@ -40,8 +45,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -66,11 +70,11 @@ class HomeFragment : Fragment() {
         }
 
         binding.fbExpense.setOnClickListener {
-        customDialog.show(parentFragmentManager,ADD_EXPENSE)
+        CustomDialog.newInstance(TransactionType.EXPENSE)?.show(parentFragmentManager, EXPENSE)
         }
 
         binding.fbAdd.setOnClickListener {
-            customDialog.show(parentFragmentManager, ADD_INCOME)
+            CustomDialog.newInstance(TransactionType.INCOME)?.show(parentFragmentManager, INCOME)
         }
     }
 
