@@ -56,6 +56,8 @@ class HomeFragment : Fragment() {
 
     private fun setupView() {
         customDialog = CustomDialog()
+        customDialog.isCancelable = true
+
     }
 
     private fun setupListeners() {

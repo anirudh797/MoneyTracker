@@ -20,18 +20,20 @@
     <TextView
         android:id="@+id/tv_category_name"
         style="@style/textView_medium"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp30"
-        android:layout_margin="@dimen/dp10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
         android:layout_marginStart="@dimen/dp10"
-        android:textSize="@dimen/sp20"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="12sp"
-        android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintWidth="true"
+        app:layout_constraintHorizontal_bias="1"
+        app:autoSizeMinTextSize="5sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"
         app:layout_constraintLeft_toRightOf="@id/iv"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="This is a category name" />
+        tools:text="This is a category name gsdgsdgsdgsdgsddsadsa" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
