@@ -62,14 +62,23 @@ class CustomDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
+        setupListeners()
+
+    }
+
+    private fun setupView() {
         binding.apply {
             spinner.adapter = CustomAdapter(requireContext(),R.layout.spinner_list_item,
                 resources.getStringArray(R.array.listOfCategories).toList())
         }
         myCalendar = Calendar.getInstance()
-
-        setupListeners()
-
+        var type = arguments?.getString(Type)
+        val transactionType = if(type?.equals("INCOME") == true) TransactionType.INCOME else
+            TransactionType.EXPENSE
+        binding.apply {
+            title.text = type
+        }
     }
 
     private fun setupListeners() {
@@ -114,7 +123,7 @@ class CustomDialog : DialogFragment() {
 
     }
 
-    private fun prepareTransactionData(): Any {
+    private fun prepareTransactionData(): Transaction {
 
         var type = arguments?.getString(Type)
         val transactionType = if(type?.equals("INCOME") == true) TransactionType.INCOME else
