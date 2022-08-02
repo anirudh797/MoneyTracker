@@ -12,13 +12,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.moneytracker.R
+import com.example.moneytracker.common.BaseUiModel
+import com.example.moneytracker.common.ClickListener
+import com.example.moneytracker.common.CommonRecyclerAdapter
 import com.example.moneytracker.common.CustomDialog
 import com.example.moneytracker.data.model.EXPENSE
 import com.example.moneytracker.data.model.INCOME
 import com.example.moneytracker.data.model.TransactionType
 import com.example.moneytracker.databinding.FragmentHomeBinding
+import com.google.android.gms.common.internal.service.Common
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     val rotateOpen : Animation by lazy { AnimationUtils.loadAnimation(activity, R.anim.rotate_open_anim) }
@@ -33,6 +37,7 @@ class HomeFragment : Fragment() {
     var fbClicked = false
     lateinit var customDialog: CustomDialog
     lateinit var viewModel: HomeViewModel
+    lateinit var  adapter : CommonRecyclerAdapter
 
     companion object{
         const val ADD_EXPENSE = "Add expense"
@@ -130,5 +135,9 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClicked(data: BaseUiModel?) {
+        //send data for edit
     }
 }

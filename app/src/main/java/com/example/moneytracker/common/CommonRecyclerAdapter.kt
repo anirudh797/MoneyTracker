@@ -9,18 +9,16 @@ class CommonRecyclerAdapter( private val data: MutableList<BaseUiModel>,
                              private val listener: ClickListener)
     : RecyclerView.Adapter<BaseViewHolder<ViewBinding, BaseUiModel>>() {
 
-        override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-        ): BaseViewHolder<ViewBinding, BaseUiModel> {
-            val inflater = LayoutInflater.from(parent.context)
-            return when (viewType) {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BaseViewHolder<ViewBinding, BaseUiModel> {
+        val inflater = LayoutInflater.from(parent.context)
+        return when (viewType) {
 
-
-
-                else -> throw Exception("Viewholder not registered!")
-            } as BaseViewHolder<ViewBinding, BaseUiModel>
-        }
+            else -> throw Exception("Viewholder not registered!")
+        } as BaseViewHolder<ViewBinding, BaseUiModel>
+    }
 
 
         override fun getItemCount(): Int {
