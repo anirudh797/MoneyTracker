@@ -2,10 +2,7 @@ package com.example.moneytracker.data.remote
 
 import com.example.moneytracker.data.model.Transaction
 import com.example.moneytracker.data.model.TransactionType
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface TransactionsApi {
 
@@ -15,8 +12,11 @@ interface TransactionsApi {
     @GET("/transactions/{id}")
     suspend fun getTransaction(@Path("id") id : String) : Transaction
 
-    @POST("/transaction/{id}")
-    suspend fun editTransaction(@Path("id") id : String)
+    @POST("/transaction_add/{id}")
+    suspend fun addTransaction(@Body transactionInfo: Transaction)
+
+    @POST("/transaction_edit/{id}")
+    suspend fun editTransaction(@Body transactionInfo : Transaction)
 
     @DELETE("/transaction/{id}")
     suspend fun deleteTransaction(@Path("id") id: String)

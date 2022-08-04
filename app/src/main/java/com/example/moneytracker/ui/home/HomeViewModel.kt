@@ -9,7 +9,6 @@ class HomeViewModel : ViewModel() {
 
     fun addTransaction(data : Transaction) {
 
-
     }
 
     private val _text = MutableLiveData<String>().apply {
